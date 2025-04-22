@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Or Yarimi | Principal Engineer & Founder‑Minded Leader</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script>
         tailwind.config = {
             theme: {
@@ -31,168 +34,414 @@
             background: #10b981;
             border-radius: 3px;
         }
+
+        /* Typewriter effect */
+        .typewriter h1 {
+            overflow: hidden;
+            border-right: 0.15em solid #10b981;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: #10b981
+            }
+        }
+
+        /* Gradient animation */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #10b981, #0891b2, #0d9488, #14b8a6);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
     </style>
 </head>
 
-<body class="bg-black text-white font-mono tracking-wide scroll-smooth">
-    <header id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4">
-        <img src="static/img/profile.png" alt="Portrait of Or Yarimi"
-            class="w-48 h-48 rounded-full object-cover border-4 border-accent shadow-lg mb-6" />
-        <h1 class="text-4xl md:text-5xl font-bold uppercase">Or Yarimi</h1>
-        <p class="text-accent mt-2 text-lg md:text-xl">Founder‑Minded Software Engineer | 0→1 Specialist</p>
-        <nav class="mt-8 flex flex-wrap justify-center gap-6 text-sm uppercase tracking-wider">
-            <a href="#about" class="hover:text-accent transition">About</a>
-            <a href="#experience" class="hover:text-accent transition">Experience</a>
-            <a href="#skills" class="hover:text-accent transition">Skills</a>
-            <a href="#facts" class="hover:text-accent transition">Fun Facts</a>
-            <a href="#contact" class="hover:text-accent transition">Contact</a>
-            <a href="./static/cv-or-yarimi.pdf" target="_blank" class="hover:text-accent transition">Download CV ↗</a>
-        </nav>
+<body x-data="{ darkMode: true }" :class="darkMode ? 'bg-black text-white' : 'bg-white text-gray-800'"
+    class="font-mono tracking-wide scroll-smooth">
+    <div :class="darkMode ? 'bg-black opacity-90' : 'bg-white opacity-90'" class="absolute inset-0 z-90"></div>
+
+    <!-- Theme Toggle - Fixed Position -->
+    <div class="fixed top-4 right-4 z-50">
+        <button @click="darkMode = !darkMode"
+            class="p-2 rounded-full transition-colors duration-300 hover:bg-accent/20 hover:text-accent"
+            :class="darkMode ? 'bg-gray-800' : 'bg-gray-200'">
+            <svg x-show="darkMode" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg x-show="!darkMode" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+    </div>
+
+    <header id="home" class="min-h-[70vh] flex flex-col justify-center items-center text-center px-4 relative">
+        <div class="absolute inset-0 gradient-bg opacity-10 z-0"></div>
+
+        <!-- Profile section -->
+        <div class="z-10 w-full flex flex-col items-center justify-center">
+            <img src="static/img/profile.png" alt="Portrait of Or Yarimi"
+                class="w-48 h-48 rounded-full object-cover border-4 border-accent shadow-lg mb-6 hover:scale-105 transition-transform duration-300"
+                data-aos="fade-down" data-aos-duration="800" />
+            <h1 class="text-4xl md:text-5xl font-bold uppercase">Or Yarimi</h1>
+            <p class="text-accent mt-4 text-lg md:text-xl" data-aos="fade-up" data-aos-delay="300">
+                Founder‑Minded Software Engineer | 0→1 Specialist
+            </p>
+        </div>
     </header>
 
-    <section id="about" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800">
-        <h2 class="text-3xl font-semibold text-accent mb-6">About Me</h2>
+    <!-- Sticky navigation - moved outside header -->
+    <div :class="darkMode ? 'bg-black/90 border-gray-800' : 'bg-white/90 border-gray-200'"
+        class="sticky top-0 z-10 w-full py-4 border-b">
+        <nav class="flex flex-wrap justify-center gap-6 text-sm uppercase tracking-wider" data-aos="fade-up"
+            data-aos-delay="600">
+            <a href="#about" class="hover:text-accent transition duration-300 hover:scale-110">About</a>
+            <a href="#experience" class="hover:text-accent transition duration-300 hover:scale-110">Experience</a>
+            <a href="#skills" class="hover:text-accent transition duration-300 hover:scale-110">Skills</a>
+            <a href="#projects" class="hover:text-accent transition duration-300 hover:scale-110">Projects</a>
+            <a href="#facts" class="hover:text-accent transition duration-300 hover:scale-110">Fun Facts</a>
+            <a href="#contact" class="hover:text-accent transition duration-300 hover:scale-110">Contact</a>
+            <a href="./static/cv-or-yarimi.pdf" target="_blank"
+                class="hover:text-accent transition duration-300 hover:scale-110">Download CV ↗</a>
+        </nav>
+    </div>
+
+    <section id="about" :class="darkMode ? 'border-gray-800' : 'border-gray-200'"
+        class="max-w-5xl mx-auto px-6 py-16 border-t">
+        <h2 class="text-3xl font-semibold text-accent mb-6" data-aos="fade-right">About Me</h2>
         <div class="flex flex-col gap-4">
-            <p class="leading-relaxed md:text-lg">
-                Hey! I'm Or, a <span class="text-accent">founder‑focused software engineer</span> passionate
+            <p class="leading-relaxed md:text-lg" data-aos="fade-up" data-aos-delay="100">
+                Hey! I'm Or, a <span class="text-accent font-semibold">founder‑focused software engineer</span>
+                passionate
                 about turning bold ideas into reality - <strong>from zero to one</strong>. I've architected AI‑powered
-                fintech
-                platforms handling seven‑figure portfolios and bootstrapped many ventures in various fields. My
-                expertise lies in crafting <span class="text-accent">end‑to‑end scalable solutions</span> that
+                fintech platforms handling seven‑figure portfolios and bootstrapped many ventures in various fields. My
+                expertise lies in crafting <span class="text-accent font-semibold">end‑to‑end scalable solutions</span>
+                that
                 make an impact.
             </p>
 
-            <p>
-                My abilities to <span class="text-accent">rapidly prototype</span> and acquire
-                deep domain expertise allows me to <span class="text-accent">drive projects from concept to
+            <p data-aos="fade-up" data-aos-delay="200">
+                My abilities to <span class="text-accent font-semibold">rapidly prototype</span> and acquire
+                deep domain expertise allows me to <span class="text-accent font-semibold">drive projects from concept
+                    to
                     production</span> efficiently. Along the way, I've learned to develop an holistic product
                 thinking, and a deep understanding of business operations.
             </p>
 
-            <p>
+            <p data-aos="fade-up" data-aos-delay="300">
                 I am not the typical software engineer. I'm a builder, a lover of technology, and a passionate
                 entrepreneur. I'm not afraid to get my hands dirty and roll up my sleeves to get the job done.
             </p>
         </div>
     </section>
 
-    <section id="experience" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800">
-        <h2 class="text-3xl font-semibold text-accent mb-6">Experience</h2>
+    <section id="experience" :class="darkMode ? 'border-gray-800' : 'border-gray-200'"
+        class="max-w-5xl mx-auto px-6 py-16 border-t">
+        <h2 class="text-3xl font-semibold text-accent mb-6" data-aos="fade-right">Experience</h2>
         <div class="relative pl-6">
             <span class="absolute left-2 top-0 h-full border-l-2 border-accent"></span>
             <!-- Centric Technologies -->
-            <div class="mb-10 ml-4">
-                <h3 class="text-xl font-bold">Managing Director &amp; CTO — Centric Technologies <span
-                        class="text-gray-400">| 2019 – Present</span></h3>
-                <p class="mt-1 text-gray-300">Leading software &amp; business development of an <span
-                        class="text-accent">AI‑driven investment technology</span> firm. Built production systems on GCP
+            <div class="mb-10 ml-4" data-aos="fade-left" data-aos-delay="100">
+                <div class="flex flex-wrap items-center">
+                    <h3 class="text-xl font-bold">Managing Director &amp; CTO — Centric Technologies</h3>
+                    <span class="text-accent ml-2">| 2019 – Present</span>
+                </div>
+                <p :class="darkMode ? 'text-gray-300' : 'text-gray-700'" class="mt-2">Leading software &amp; business
+                    development of an <span class="text-accent">AI‑driven investment technology</span> firm. Built
+                    production systems on GCP
                     from scratch, leveraging advanced ML algorithms to manage 7‑figure AUM portfolios.</p>
             </div>
             <!-- Software Consultant -->
-            <div class="mb-10 ml-4">
-                <h3 class="text-xl font-bold">Software Consultant <span class="text-gray-400">| 2023 – Present</span>
-                </h3>
-                <p class="mt-1 text-gray-300">Delivering high‑level architecture &amp; system design to fast‑growing
+            <div class="mb-10 ml-4" data-aos="fade-left" data-aos-delay="200">
+                <div class="flex flex-wrap items-center">
+                    <h3 class="text-xl font-bold">Software Consultant</h3>
+                    <span class="text-accent ml-2">| 2023 – Present</span>
+                </div>
+                <p :class="darkMode ? 'text-gray-300' : 'text-gray-700'" class="mt-2">Delivering high‑level architecture
+                    &amp; system design to fast‑growing
                     startups, currently partnering with Hayde to revolutionize digital payments in hospitality.</p>
             </div>
             <!-- Capuchin.io -->
-            <div class="mb-10 ml-4">
-                <h3 class="text-xl font-bold">Co‑Founder — Capuchin.io <span class="text-gray-400">| 2018 – 2021</span>
-                </h3>
-                <p class="mt-1 text-gray-300">Bootstrapped a no‑code website builder for SMBs, owning backend (Python,
+            <div class="mb-10 ml-4" data-aos="fade-left" data-aos-delay="300">
+                <div class="flex flex-wrap items-center">
+                    <h3 class="text-xl font-bold">Co‑Founder — Capuchin.io</h3>
+                    <span class="text-accent ml-2">| 2018 – 2021</span>
+                </div>
+                <p :class="darkMode ? 'text-gray-300' : 'text-gray-700'" class="mt-2">Bootstrapped a no‑code website
+                    builder for SMBs, owning backend (Python,
                     Django) &amp; frontend (React) development, product strategy, and growth.</p>
             </div>
             <!-- OM2 -->
-            <div class="mb-10 ml-4">
-                <h3 class="text-xl font-bold">Team Lead &amp; Software Engineer — OM2 <span class="text-gray-400">|
-                        2013 – 2019</span></h3>
-                <p class="mt-1 text-gray-300">Led multiple full‑stack teams (up to 9 engineers) building sophisticated
+            <div class="mb-10 ml-4" data-aos="fade-left" data-aos-delay="400">
+                <div class="flex flex-wrap items-center">
+                    <h3 class="text-xl font-bold">Team Lead &amp; Software Engineer — OM2</h3>
+                    <span class="text-accent ml-2">| 2013 – 2019</span>
+                </div>
+                <p :class="darkMode ? 'text-gray-300' : 'text-gray-700'" class="mt-2">Led multiple full‑stack teams (up
+                    to 9 engineers) building sophisticated
                     fintech platforms on the .NET stack. Key contributor to onboarding &amp; mentorship programs.</p>
             </div>
             <!-- IDF 8200 -->
-            <div class="ml-4">
-                <h3 class="text-xl font-bold">IDF 8200 Elite Intelligence Unit <span class="text-gray-400">|
-                        2009 – 2012</span></h3>
-                <p class="mt-1 text-gray-300">Served in an elite SIGINT unit, honing analytical skills &amp; discipline.
+            <div class="ml-4" data-aos="fade-left" data-aos-delay="500">
+                <div class="flex flex-wrap items-center">
+                    <h3 class="text-xl font-bold">IDF 8200 Elite Intelligence Unit</h3>
+                    <span class="text-accent ml-2">| 2009 – 2012</span>
+                </div>
+                <p :class="darkMode ? 'text-gray-300' : 'text-gray-700'" class="mt-2">Served in an elite SIGINT unit,
+                    honing analytical skills &amp; discipline.
                 </p>
             </div>
         </div>
     </section>
 
     <!-- ===== SKILLS SECTION ===== -->
-    <section id="skills" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800">
-        <h2 class="text-3xl font-semibold text-accent mb-6">Skills &amp; Tech Stack</h2>
+    <section id="skills" :class="darkMode ? 'border-gray-800' : 'border-gray-200'"
+        class="max-w-5xl mx-auto px-6 py-16 border-t">
+        <h2 class="text-3xl font-semibold text-accent mb-6" data-aos="fade-right">Skills &amp; Tech Stack</h2>
         <div class="grid md:grid-cols-2 gap-8">
-            <div>
-                <h3 class="text-lg font-bold mb-2">Core Competencies</h3>
-                <ul class="list-disc list-inside space-y-1 text-gray-300">
-                    <li>0 → 1 product architecture &amp; execution</li>
-                    <li>Multidisciplinary software development</li>
-                    <li>Holistic product thinking &amp; rapid prototyping</li>
-                    <li>Leading cross‑functional teams</li>
+            <div data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-lg font-bold mb-4">Core Competencies</h3>
+                <ul :class="darkMode ? 'text-gray-300' : 'text-gray-700'" class="space-y-3">
+                    <li class="flex items-center gap-2">
+                        <span class="text-accent">✦</span> 0 → 1 product architecture &amp; execution
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-accent">✦</span> Multidisciplinary software development
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-accent">✦</span> Holistic product thinking &amp; rapid prototyping
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-accent">✦</span> Leading cross‑functional teams
+                    </li>
                 </ul>
             </div>
-            <div>
-                <h3 class="text-lg font-bold mb-2">Tech Stack</h3>
-                <ul class="list-disc list-inside space-y-1 text-gray-300">
-                    <li><span class="text-accent">Python</span> &amp; Data Science (polars, pandas) — Expert</li>
-                    <li><span class="text-accent">Cloud</span> (GCP, AWS) — Expert</li>
-                    <li>C# &amp; .NET — Advanced</li>
-                    <li>Networking &amp; distributed systems</li>
-                </ul>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-lg font-bold mb-4">Tech Stack</h3>
+
+                <!-- Python Skill -->
+                <div class="mb-3">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold">Python</span>
+                        <span>Expert</span>
+                    </div>
+                    <div :class="darkMode ? 'bg-gray-700' : 'bg-gray-300'" class="w-full rounded-full h-2.5">
+                        <div class="bg-accent h-2.5 rounded-full" style="width: 95%"></div>
+                    </div>
+                </div>
+
+                <!-- Cloud Skill -->
+                <div class="mb-3">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold">Cloud (GCP, AWS)</span>
+                        <span>Expert</span>
+                    </div>
+                    <div :class="darkMode ? 'bg-gray-700' : 'bg-gray-300'" class="w-full rounded-full h-2.5">
+                        <div class="bg-accent h-2.5 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <!-- C# Skill -->
+                <div class="mb-3">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold">C# & .NET</span>
+                        <span>Advanced</span>
+                    </div>
+                    <div :class="darkMode ? 'bg-gray-700' : 'bg-gray-300'" class="w-full rounded-full h-2.5">
+                        <div class="bg-accent h-2.5 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <!-- Networking Skill -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold">Networking & Distributed Systems</span>
+                        <span>Advanced</span>
+                    </div>
+                    <div :class="darkMode ? 'bg-gray-700' : 'bg-gray-300'" class="w-full rounded-full h-2.5">
+                        <div class="bg-accent h-2.5 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- ===== FUN FACTS SECTION ===== -->
-    <section id="facts" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800">
-        <h2 class="text-3xl font-semibold text-accent mb-6">Fun Facts</h2>
+    <section id="facts" :class="darkMode ? 'border-gray-800' : 'border-gray-200'"
+        class="max-w-5xl mx-auto px-6 py-16 border-t">
+        <h2 class="text-3xl font-semibold text-accent mb-6" data-aos="fade-right">Fun Facts</h2>
         <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition">
-                <p class="text-center">👨‍👦‍👦<br />Father of <span class="text-accent">two</span> amazing boys</p>
+            <div :class="darkMode ? 'bg-gray-900' : 'bg-gray-100'"
+                class="p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:-translate-y-2"
+                data-aos="zoom-in" data-aos-delay="100">
+                <div class="text-4xl mb-3 text-center">👨‍👦‍👦</div>
+                <p class="text-center">Father of <span class="text-accent font-semibold">two</span> amazing boys</p>
             </div>
-            <div class="bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition">
-                <p class="text-center">🏎️<br />Formula 1 enthusiast</p>
+            <div :class="darkMode ? 'bg-gray-900' : 'bg-gray-100'"
+                class="p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:-translate-y-2"
+                data-aos="zoom-in" data-aos-delay="200">
+                <div class="text-4xl mb-3 text-center">🏎️</div>
+                <p class="text-center">Formula 1 enthusiast</p>
             </div>
-            <div class="bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition">
-                <p class="text-center">📚<br />Autodidact — always learning</p>
+            <div :class="darkMode ? 'bg-gray-900' : 'bg-gray-100'"
+                class="p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:-translate-y-2"
+                data-aos="zoom-in" data-aos-delay="300">
+                <div class="text-4xl mb-3 text-center">📚</div>
+                <p class="text-center">Autodidact — always learning</p>
             </div>
-            <div class="bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition">
-                <p class="text-center">🔧<br />DIY hobbyist</p>
+            <div :class="darkMode ? 'bg-gray-900' : 'bg-gray-100'"
+                class="p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:-translate-y-2"
+                data-aos="zoom-in" data-aos-delay="400">
+                <div class="text-4xl mb-3 text-center">🔧</div>
+                <p class="text-center">DIY hobbyist</p>
             </div>
         </div>
     </section>
 
     <!-- ===== CONTACT SECTION ===== -->
-    <section id="contact" class="max-w-4xl mx-auto px-6 py-16 border-t border-gray-800 text-center">
-        <h2 class="text-3xl font-semibold text-accent mb-6">Contact</h2>
-        <p class="md:text-lg text-gray-300 mb-6">Let’s build something game‑changing together.</p>
+    <section id="contact" :class="darkMode ? 'border-gray-800' : 'border-gray-200'"
+        class="max-w-4xl mx-auto px-6 py-16 border-t text-center relative">
+        <div class="absolute inset-0 gradient-bg opacity-5 z-0"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl font-semibold text-accent mb-6" data-aos="fade-up">Contact</h2>
+            <p :class="darkMode ? 'text-gray-300' : 'text-gray-700'" class="md:text-lg mb-8" data-aos="fade-up"
+                data-aos-delay="100">Let's build something
+                game‑changing together.</p>
 
-        <div class="flex flex-wrap justify-center gap-8">
-            <a href="mailto:OrYarimi@gmail.com" class="flex items-center gap-2 hover:text-accent transition">
-                ✉️ <span>Email</span>
-            </a>
-            <a href="tel:+359886936460" class="flex items-center gap-2 hover:text-accent transition">
-                📱 <span>Call</span>
-            </a>
-            <a href="https://linkedin.com/in/or-yarimi/" target="_blank"
-                class="flex items-center gap-2 hover:text-accent transition">
-                🔗 <span>LinkedIn</span>
-            </a>
-            <span class="flex items-center gap-2 cursor-default">
-                🏠 <span>Sofia, Bulgaria</span>
-            </span>
+            <div class="flex flex-wrap justify-center gap-8 mb-12" data-aos="fade-up" data-aos-delay="200">
+                <a href="mailto:OrYarimi@gmail.com"
+                    class="flex items-center gap-2 hover:text-accent transition-all duration-300 hover:scale-110 group">
+                    <span :class="darkMode ? 'bg-gray-800' : 'bg-gray-200'"
+                        class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-accent/20 transition-all duration-300">✉️</span>
+                    <span>Email</span>
+                </a>
+                <a href="tel:+359886936460"
+                    class="flex items-center gap-2 hover:text-accent transition-all duration-300 hover:scale-110 group">
+                    <span :class="darkMode ? 'bg-gray-800' : 'bg-gray-200'"
+                        class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-accent/20 transition-all duration-300">📱</span>
+                    <span>Call</span>
+                </a>
+                <a href="https://linkedin.com/in/or-yarimi/" target="_blank"
+                    class="flex items-center gap-2 hover:text-accent transition-all duration-300 hover:scale-110 group">
+                    <span :class="darkMode ? 'bg-gray-800' : 'bg-gray-200'"
+                        class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-accent/20 transition-all duration-300">🔗</span>
+                    <span>LinkedIn</span>
+                </a>
+                <span class="flex items-center gap-2 cursor-default group">
+                    <span :class="darkMode ? 'bg-gray-800' : 'bg-gray-200'"
+                        class="w-10 h-10 rounded-full flex items-center justify-center">🏠</span>
+                    <span>Sofia, Bulgaria</span>
+                </span>
+            </div>
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="py-6 text-center text-sm text-gray-500 border-t border-gray-800">
-        © <span id="year"></span> Or Yarimi. Built with ❤️, Tailwind, and far too much coffee.
+    <footer :class="darkMode ? 'border-gray-800 text-gray-500' : 'border-gray-200 text-gray-600'"
+        class="py-8 text-center text-sm border-t">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex justify-center mb-4">
+                <a href="#home" :class="darkMode ? 'bg-gray-900' : 'bg-gray-100'"
+                    class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all duration-300">
+                    ↑
+                </a>
+            </div>
+            <p>Or Yarimi. Built with ❤️, AI, and far too espresso.</p>
+        </div>
     </footer>
 
     <script>
-        // Dynamically update footer year
-        document.getElementById("year").textContent = new Date().getFullYear();
+        // Initialize AOS animations
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({
+                duration: 800,
+                once: true,
+                mirror: false
+            });
+
+            // Check for saved theme preference or use system preference
+            if (localStorage.getItem('darkMode') === null) {
+                // Check system preference
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.querySelector('body').__x.$data.darkMode = true;
+                } else {
+                    document.querySelector('body').__x.$data.darkMode = false;
+                }
+            } else {
+                // Use saved preference
+                document.querySelector('body').__x.$data.darkMode = localStorage.getItem('darkMode') === 'true';
+            }
+
+            // Watch for changes to save preference
+            document.querySelector('body').__x.$watch('darkMode', value => {
+                localStorage.setItem('darkMode', value);
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add custom scroll-based effects
+            window.addEventListener('scroll', function () {
+                const scrollPosition = window.scrollY;
+                const header = document.querySelector('header');
+
+                // Parallax effect for header
+                if (header && scrollPosition < header.offsetHeight) {
+                    const opacity = 1 - (scrollPosition / header.offsetHeight);
+                    header.querySelector('.gradient-bg').style.opacity = 0.1 * opacity;
+                }
+            });
+        });
     </script>
 </body>
 
