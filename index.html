@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Or Yarimi | Principal Engineer & Founder‑Minded Leader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: "#10b981"
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        /* Custom scrollbar for a subtle, polished feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1f1f1f;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white font-mono tracking-wide scroll-smooth">
+    <header id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4">
+        <img src="static/img/profile.png" alt="Portrait of Or Yarimi"
+            class="w-48 h-48 rounded-full object-cover border-4 border-accent shadow-lg mb-6" />
+        <h1 class="text-4xl md:text-5xl font-bold uppercase">Or Yarimi</h1>
+        <p class="text-accent mt-2 text-lg md:text-xl">Founder‑Minded Software Engineer | 0→1 Specialist</p>
+        <nav class="mt-8 flex flex-wrap justify-center gap-6 text-sm uppercase tracking-wider">
+            <a href="#about" class="hover:text-accent transition">About</a>
+            <a href="#experience" class="hover:text-accent transition">Experience</a>
+            <a href="#skills" class="hover:text-accent transition">Skills</a>
+            <a href="#facts" class="hover:text-accent transition">Fun Facts</a>
+            <a href="#contact" class="hover:text-accent transition">Contact</a>
+            <a href="./static/cv-or-yarimi.pdf" target="_blank" class="hover:text-accent transition">Download CV ↗</a>
+        </nav>
+    </header>
+
+    <section id="about" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800">
+        <h2 class="text-3xl font-semibold text-accent mb-6">About Me</h2>
+        <div class="flex flex-col gap-4">
+            <p class="leading-relaxed md:text-lg">
+                Hey! I'm Or, a <span class="text-accent">founder‑focused software engineer</span> passionate
+                about turning bold ideas into reality - <strong>from zero to one</strong>. I've architected AI‑powered
+                fintech
+                platforms handling seven‑figure portfolios and bootstrapped many ventures in various fields. My
+                expertise lies in crafting <span class="text-accent">end‑to‑end scalable solutions</span> that
+                make an impact.
+            </p>
+
+            <p>
+                My abilities to <span class="text-accent">rapidly prototype</span> and acquire
+                deep domain expertise allows me to <span class="text-accent">drive projects from concept to
+                    production</span> efficiently. Along the way, I've learned to develop an holistic product
+                thinking, and a deep understanding of business operations.
+            </p>
+
+            <p>
+                I am not the typical software engineer. I'm a builder, a lover of technology, and a passionate
+                entrepreneur. I'm not afraid to get my hands dirty and roll up my sleeves to get the job done.
+            </p>
+        </div>
+    </section>
+
+    <section id="experience" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800">
+        <h2 class="text-3xl font-semibold text-accent mb-6">Experience</h2>
+        <div class="relative pl-6">
+            <span class="absolute left-2 top-0 h-full border-l-2 border-accent"></span>
+            <!-- Centric Technologies -->
+            <div class="mb-10 ml-4">
+                <h3 class="text-xl font-bold">Managing Director &amp; CTO — Centric Technologies <span
+                        class="text-gray-400">| 2019 – Present</span></h3>
+                <p class="mt-1 text-gray-300">Leading software &amp; business development of an <span
+                        class="text-accent">AI‑driven investment technology</span> firm. Built production systems on GCP
+                    from scratch, leveraging advanced ML algorithms to manage 7‑figure AUM portfolios.</p>
+            </div>
+            <!-- Software Consultant -->
+            <div class="mb-10 ml-4">
+                <h3 class="text-xl font-bold">Software Consultant <span class="text-gray-400">| 2023 – Present</span>
+                </h3>
+                <p class="mt-1 text-gray-300">Delivering high‑level architecture &amp; system design to fast‑growing
+                    startups, currently partnering with Hayde to revolutionize digital payments in hospitality.</p>
+            </div>
+            <!-- Capuchin.io -->
+            <div class="mb-10 ml-4">
+                <h3 class="text-xl font-bold">Co‑Founder — Capuchin.io <span class="text-gray-400">| 2018 – 2021</span>
+                </h3>
+                <p class="mt-1 text-gray-300">Bootstrapped a no‑code website builder for SMBs, owning backend (Python,
+                    Django) &amp; frontend (React) development, product strategy, and growth.</p>
+            </div>
+            <!-- OM2 -->
+            <div class="mb-10 ml-4">
+                <h3 class="text-xl font-bold">Team Lead &amp; Software Engineer — OM2 <span class="text-gray-400">|
+                        2013 – 2019</span></h3>
+                <p class="mt-1 text-gray-300">Led multiple full‑stack teams (up to 9 engineers) building sophisticated
+                    fintech platforms on the .NET stack. Key contributor to onboarding &amp; mentorship programs.</p>
+            </div>
+            <!-- IDF 8200 -->
+            <div class="ml-4">
+                <h3 class="text-xl font-bold">IDF 8200 Elite Intelligence Unit <span class="text-gray-400">|
+                        2009 – 2012</span></h3>
+                <p class="mt-1 text-gray-300">Served in an elite SIGINT unit, honing analytical skills &amp; discipline.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS SECTION ===== -->
+    <section id="skills" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800">
+        <h2 class="text-3xl font-semibold text-accent mb-6">Skills &amp; Tech Stack</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-lg font-bold mb-2">Core Competencies</h3>
+                <ul class="list-disc list-inside space-y-1 text-gray-300">
+                    <li>0 → 1 product architecture &amp; execution</li>
+                    <li>Multidisciplinary software development</li>
+                    <li>Holistic product thinking &amp; rapid prototyping</li>
+                    <li>Leading cross‑functional teams</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold mb-2">Tech Stack</h3>
+                <ul class="list-disc list-inside space-y-1 text-gray-300">
+                    <li><span class="text-accent">Python</span> &amp; Data Science (polars, pandas) — Expert</li>
+                    <li><span class="text-accent">Cloud</span> (GCP, AWS) — Expert</li>
+                    <li>C# &amp; .NET — Advanced</li>
+                    <li>Networking &amp; distributed systems</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FUN FACTS SECTION ===== -->
+    <section id="facts" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800">
+        <h2 class="text-3xl font-semibold text-accent mb-6">Fun Facts</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition">
+                <p class="text-center">👨‍👦‍👦<br />Father of <span class="text-accent">two</span> amazing boys</p>
+            </div>
+            <div class="bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition">
+                <p class="text-center">🏎️<br />Formula 1 enthusiast</p>
+            </div>
+            <div class="bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition">
+                <p class="text-center">📚<br />Autodidact — always learning</p>
+            </div>
+            <div class="bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-accent/50 transition">
+                <p class="text-center">🔧<br />DIY hobbyist</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="max-w-4xl mx-auto px-6 py-16 border-t border-gray-800 text-center">
+        <h2 class="text-3xl font-semibold text-accent mb-6">Contact</h2>
+        <p class="md:text-lg text-gray-300 mb-6">Let’s build something game‑changing together.</p>
+
+        <div class="flex flex-wrap justify-center gap-8">
+            <a href="mailto:OrYarimi@gmail.com" class="flex items-center gap-2 hover:text-accent transition">
+                ✉️ <span>Email</span>
+            </a>
+            <a href="tel:+359886936460" class="flex items-center gap-2 hover:text-accent transition">
+                📱 <span>Call</span>
+            </a>
+            <a href="https://linkedin.com/in/or-yarimi/" target="_blank"
+                class="flex items-center gap-2 hover:text-accent transition">
+                🔗 <span>LinkedIn</span>
+            </a>
+            <span class="flex items-center gap-2 cursor-default">
+                🏠 <span>Sofia, Bulgaria</span>
+            </span>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="py-6 text-center text-sm text-gray-500 border-t border-gray-800">
+        © <span id="year"></span> Or Yarimi. Built with ❤️, Tailwind, and far too much coffee.
+    </footer>
+
+    <script>
+        // Dynamically update footer year
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
